@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "wwwp",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
