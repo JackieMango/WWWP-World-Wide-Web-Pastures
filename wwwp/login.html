@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WWWP Login</title>
+    <link rel="icon" type="image/x-icon" href="./assets/cow.png">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body class="login-bg">
+
+    <div class="login-container">
+        <h1>World Wide Web Pastures</h1>
+        <h2 id="welcome-text">Welcome back!</h2>
+
+        <!-- Message Box for displaying error/success messages -->
+        <div id="message-box" style="margin-bottom: 15px; color: red;"></div>
+        
+        <!-- Login Form -->
+        <form id="login-form" name="login">
+          <label for="email">Email</label><br>
+          <input type="email" id="email" name="email" required><br>
+          
+          <label for="passwgord">Password</label><br>
+          <input type="password" id="password" name="password" required><br>
+        
+          <button type="submit" id="submit-login">Login</button>
+        </form>        
+        
+        <!-- Create Account Link -->
+        <p class="create-account">Don't have an account?<br><a href="#" id="show-signup">Create Account</a></p>
+
+        <!-- Sign-Up Form (Initially Hidden) -->
+        <div id="sign-up-form" style="display:none;">
+            <h2>Create Account</h2>
+            <form id="sign-up-form-container" name="signup">
+                <label for="username-signup">Username</label><br>
+                <input type="text" id="username-signup" name="username" required><br>
+
+                <label for="email-signup">Email</label><br>
+                <input type="email" id="email-signup" name="email" required><br>
+
+                <label for="password-signup">Password</label><br>
+                <input type="password" id="password-signup" name="password" required><br>
+
+                <button type="submit" id="submit-signup">Sign Up</button>
+            </form>
+
+            <!-- Back to Login Link -->
+            <p class="create-account">Already have an account? <a href="#" id="show-login">Login</a></p>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js"></script>
+    <script src="login.js" type="module"></script>
+</body>
+</html>

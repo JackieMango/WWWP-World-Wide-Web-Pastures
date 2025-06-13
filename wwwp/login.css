@@ -1,0 +1,152 @@
+@font-face {
+    font-family: Ultra;
+    src: url(./assets/fonts/Ultra-Regular.ttf);
+    font-weight: 400;
+  }
+
+@font-face {
+    font-family: Dogica;
+    src: url(./assets/fonts/dogica/dogica.ttf);
+  }
+
+/* Basic styling for the body */
+body {
+    font-family: Dogica, 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: url('assets/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    line-height: 1.4;
+    font-size: 12px;
+}
+
+button {
+    font-family: Dogica, 'Roboto', sans-serif;
+}
+
+/* Container styling */
+.login-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 10px;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Styling for the header (Title) */
+h1 {
+    color: #ff79b0;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-family: 'Ultra', serif;
+    font-weight: 400;
+}
+
+/* Styling for the section header */
+h2 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+/* Form styling */
+form {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Input fields styling */
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: none;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+/* Button styling */
+button {
+    background-color: #ff79b0;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 5px;
+    padding: 12px;
+}
+
+/* Hover effect for buttons */
+button:hover {
+    background-color: #ff4c97;
+}
+
+/* Forgot password styling */
+.forgot-password {
+    text-decoration: none;
+    color: #ccc;
+    font-size: 14px;
+    display: block;
+    margin-top: 10px;
+}
+
+.forgot-password:hover {
+    color: #fff;
+}
+
+/* Create account link styling */
+.create-account {
+    color: #ccc;
+    margin-top: 15px;
+    line-height: 1.8;
+}
+
+.create-account a {
+    color: #ff79b0;
+    text-decoration: none;
+}
+
+.create-account a:hover {
+    text-decoration: underline;
+}
+
+/* Login link under sign-up form */
+#show-login {
+    color: #ff79b0;
+    text-decoration: none;
+}
+
+#show-login:hover {
+    text-decoration: underline;
+}
+
+/* Remember me checkbox styling */
+.remember-me {
+    color: #ccc;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+
+    .login-container {
+        width: 100%;
+        padding: 20px;
+    }
+}

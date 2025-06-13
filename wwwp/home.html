@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WWWP Home Farm</title>
+    <link rel="icon" type="image/x-icon" href="./assets/cow.png">
+    <link rel="stylesheet" href="home.css">
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js"></script>
+    <script type="module" src="main.js?scene=home"></script>
+    <script type="module" src="howToPlay.js" defer></script>
+</head>
+<body>
+    <div id="menu-bar">
+        <div id="inventory" class="row">
+            <div class="col">
+                <p id="welcome-name">Welcome, user</p>
+                <p id="coins"></p>
+            </div>
+            <img id="bag" src="./assets/bag.png" alt="Inventory bag" width="40px">
+            <div id="inventory-dropdown">
+                <p>
+                    <img src="./assets/wheat.png" alt="" width="25px">
+                    Wheat: <span id="inv-1" class="inv-num"></span>
+                </p>
+                <p>
+                    <img src="./assets/watermelon.png" alt="" width="25px">
+                    Watermelons: <span id="inv-2" class="inv-num"></span>
+                </p>
+                <p>
+                    <img src="./assets/carrot.png" alt="" width="25px">
+                    Carrots: <span id="inv-3" class="inv-num"></span>
+                </p>
+                <p>
+                    <img src="./assets/wheat-seeds.png" alt="" width="25px">
+                    Wheat seeds: <span id="inv-s-1" class="inv-num"></span>
+                </p>
+                <p>
+                    <img src="./assets/watermelon-seeds.png" alt="" width="25px">
+                    Watermelon <br>seeds: <span id="inv-s-2" class="inv-num"></span>
+                </p>
+                <p>
+                    <img src="./assets/carrot-seeds.png" alt="" width="25px">
+                    Carrot seeds: <span id="inv-s-3" class="inv-num"></span>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="loader"></div>
+            <p id="saved-message">Data Saved</p>
+        </div>
+        <div class="row">
+            <button id="how-to-play-button">How To Play</button>
+            <button id="logout-button">Logout</button>
+        </div>
+    </div>
+    <div id="phaser-canvas">
+        <div id="play-popup" class="popup">
+            <button id="page-one-button" class="tab">Farm</button>
+            <button id="page-two-button" class="tab">Town Square</button>
+                <div id="close-play-popup" class="close">&times;</div>
+            <div id="page-one">
+                <ul> 
+                    <li>Use the <strong>WASD</strong> or <strong>arrow keys</strong> to move your character around the map.</li>
+                    <li><strong>Click on your username</strong> in the upper left to view your inventory.</li>
+                    <li><strong>Walk up to the Animal Pen to:</strong>
+                        <ul>
+                            <li>View your animals’ statistics</li>
+                            <li>Breed animals</li>
+                            <li>Rename your animals</li>
+                        </ul>
+                    </li>
+                    <li><strong>Walk up to the Farm to:</strong>
+                        <ul>
+                            <li>Plant seeds</li>
+                            <li>Harvest your crops</li>
+                        </ul>
+                    <li><strong>Walk through the break in the trees</strong> to enter the Town Square.</li>
+                </ul>
+            </div>
+            <div  id="page-two">
+                <ul> 
+                    <li>Use the <strong>WASD</strong> or <strong>arrow keys</strong> to move your character around the map.</li>
+                    <li><strong>Walk up to the Animal Market to:</strong>
+                        <ul>
+                            <li>Buy animals</li>
+                            <li>Sell animals</li>
+                        </ul>
+                    </li>
+                    <li><strong>Walk up to the Crop Market to:</strong>
+                        <ul>
+                            <li>Buy seeds</li>
+                            <li>Sell crops</li>
+                        </ul>
+                    </li>
+                    <li><strong>Walk up to the Competition Stage to:</strong>
+                        <ul>
+                            <li>Enter your animals into competitions</li>
+                            <li>Compete for a cash prize</li>
+                        </ul>
+                    </li>
+                    <li><strong>Walk through the break in the trees</strong> to go back to your home farm.</li>
+                </ul>
+            </div>
+        </div>
+        <div id="popup" class="popup">
+            <span class="close" id="closeAnimal">&times;</span>
+            <button id="viewAnimalList">View Animal List</button>
+            <button id="breedAnimals">Breed Animals</button>
+            <button id="renameAnimals">Rename Animal</button>
+            <div id="naming">
+                <p>Select animal to rename:</p>
+                <div id="renameList"></div>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name">
+                <button id="confirmName">Rename</button>
+            </div>
+            <div id="animalList" class="animal-list"></div>
+            <div id="animalSelection" style="display: none;">
+                <p>Select two animals to breed:</p>
+                <div id="breedingAnimalList"></div>
+                <button id="confirmBreed">Breed Selected Animals</button>
+                </div>
+            </div>
+        </div>
+        <div id="farm" class="farm">
+            <div class="close-container">
+                <span class="close" id="closeFarm">&times;</span>
+            </div>
+            <div id="farm-options">
+                <button id="plant-seeds">Plant</button>
+                <button id="harvest-crops">Harvest</button>
+            </div>
+            <div id="seed-options">
+                <button id="wheat-seeds">Wheat</button>
+                <button id="watermelon-seeds">Watermelon</button>
+                <button id="carrot-seeds">Carrot</button>
+                <button id="back1">Back</button>
+            </div>
+            <div id="crops">
+                <button id="wheat-crop">Wheat</button>
+                <button id="watermelon-crop">Watermelon</button>
+                <button id="carrot-crop">Carrot</button>
+                <button id="back2">Back</button>
+            </div>
+        </div>
+        <div id="wheat-planted">Wheat successfully planted!</div>
+        <div id="carrots-planted">Carrots successfully planted!</div>
+        <div id="watermelon-planted">Watermelon successfully planted!</div>
+        <div id="wheat-grown">Wheat is ready to harvest!</div>
+        <div id="carrot-grown">Carrots are ready to harvest!</div>
+        <div id="watermelon-grown">Watermelon is ready to harvest!</div>
+        <div id="wheat-harvest">Wheat successfully harvested!</div>
+        <div id="carrot-harvest">Carrots successfully harvested!</div>
+        <div id="watermelon-harvest">Watermelon successfully harvested!</div>
+        <div id="seed-error1">Not enough seeds!</div>
+        <div id="seed-error2">Seeds already planted!</div>
+        <div id="harvest-error">Crop not ready!</div>
+        <div id="breed">A new animal has been born!</div>
+        <div id="rename">Animal successfully renamed!</div>
+        <div id="breed-error1">Animals must be the same species!</div>
+        <div id="breed-error2">Must select exactly 2 animals!</div>
+        <div id="rename-error1">Must give the animal a name!</div>
+        <div id="rename-error2">Must select exactly 1 animal!</div>
+    </div>
+</body>
+
+</html>

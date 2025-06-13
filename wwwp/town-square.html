@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>WWWP Town Square</title>
+    <link rel="icon" type="image/x-icon" href="./assets/cow.png">
+    <link rel="stylesheet" href="town-square.css" />
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.88.2/dist/phaser.min.js"></script>
+    <script type="module" src="howToPlay.js" defer></script>
+  </head>
+  <body>
+    <div id="menu-bar">
+      <div id="inventory" class="row">
+        <div class="col">
+          <p id="welcome-name">Welcome, user</p>
+          <p id="coins"></p>
+        </div>
+        <img id="bag" src="./assets/bag.png" alt="Inventory bag" width="40px" />
+        <div id="inventory-dropdown">
+          <p>
+            <img src="./assets/wheat.png" alt="" width="25px" />
+            Wheat: <span id="inv-1" class="inv-num"></span>
+          </p>
+          <p>
+            <img src="./assets/watermelon.png" alt="" width="25px" />
+            Watermelons: <span id="inv-2" class="inv-num"></span>
+          </p>
+          <p>
+            <img src="./assets/carrot.png" alt="" width="25px" />
+            Carrots: <span id="inv-3" class="inv-num"></span>
+          </p>
+          <p>
+            <img src="./assets/wheat-seeds.png" alt="" width="25px" />
+            Wheat seeds: <span id="inv-s-1" class="inv-num"></span>
+          </p>
+          <p>
+            <img src="./assets/watermelon-seeds.png" alt="" width="25px" />
+            Watermelon <br />seeds: <span id="inv-s-2" class="inv-num"></span>
+          </p>
+          <p>
+            <img src="./assets/carrot-seeds.png" alt="" width="25px" />
+            Carrot seeds: <span id="inv-s-3" class="inv-num"></span>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="loader"></div>
+        <p id="saved-message">Data Saved</p>
+      </div>
+      <div class="row">
+        <button id="how-to-play-button">How To Play</button>
+        <button id="logout-button">Logout</button>
+      </div>
+    </div>
+
+    <div id="phaser-canvas">
+      <div id="play-popup" class="popup">
+        <button id="page-one-button" class="tab">Farm</button>
+        <button id="page-two-button" class="tab">Town Square</button>
+        <div id="close-play-popup" class="close">&times;</div>
+        <div id="page-one">
+          <ul>
+            <li>
+              Use the <strong>WASD</strong> or <strong>arrow keys</strong> to
+              move your character around the map.
+            </li>
+            <li>
+              <strong>Click on your username</strong> in the upper left to view
+              your inventory.
+            </li>
+            <li>
+              <strong>Walk up to the Animal Pen to:</strong>
+              <ul>
+                <li>View your animals’ statistics</li>
+                <li>Breed animals</li>
+                <li>Rename your animals</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Walk up to the Farm to:</strong>
+              <ul>
+                <li>Plant seeds</li>
+                <li>Harvest your crops</li>
+              </ul>
+            </li>
+
+            <li>
+              <strong>Walk through the break in the trees</strong> to enter the
+              Town Square.
+            </li>
+          </ul>
+        </div>
+        <div id="page-two">
+          <ul>
+            <li>
+              Use the <strong>WASD</strong> or <strong>arrow keys</strong> to
+              move your character around the map.
+            </li>
+            <li>
+              <strong>Walk up to the Animal Market to:</strong>
+              <ul>
+                <li>Buy animals</li>
+                <li>Sell animals</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Walk up to the Crop Market to:</strong>
+              <ul>
+                <li>Buy seeds</li>
+                <li>Sell crops</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Walk up to the Competition Stage to:</strong>
+              <ul>
+                <li>Enter your animals into competitions</li>
+                <li>Compete for a cash prize</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Walk through the break in the trees</strong> to go back to
+              your home farm.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id="animalMarketPopup" class="popup" style="display: none">
+        <span class="close" id="closeAnimal" onclick="closeAnimalMarketPopup()"
+          >&times;</span
+        >
+        <div id="animalMainMenu">
+          <button id="buyAnimals">Buy Animals</button>
+          <button id="sellAnimals">Sell Animals</button>
+        </div>
+        <div id="buyMenu" style="display: none">
+          <div class="buy-option">
+            <button class="animal-option" id="buyCow">
+              Buy Cow<br /><span class="price">150 coins</span>
+            </button>
+            <div class="animal-name-input" style="display: none">
+              <label for="cowName">Name your Cow:</label>
+              <input type="text" id="cowName" name="cowName" />
+              <button class="confirm-buy" data-type="Cow">Confirm</button>
+            </div>
+          </div>
+          <div class="buy-option">
+            <button class="animal-option" id="buyGoat">
+              Buy Goat<br /><span class="price">120 coins</span>
+            </button>
+            <div class="animal-name-input" style="display: none">
+              <label for="goatName">Name your Goat:</label>
+              <input type="text" id="goatName" name="goatName" />
+              <button class="confirm-buy" data-type="Goat">Confirm</button>
+            </div>
+          </div>
+          <div class="buy-option">
+            <button class="animal-option" id="buyChicken">
+              Buy Chicken<br /><span class="price">80 coins</span>
+            </button>
+            <div class="animal-name-input" style="display: none">
+              <label for="chickenName">Name your Chicken:</label>
+              <input type="text" id="chickenName" name="chickenName" />
+              <button class="confirm-buy" data-type="Chicken">Confirm</button>
+            </div>
+          </div>
+          <button class="backBtn">Back</button>
+        </div>
+
+        <div id="sellMenu" style="display: none">
+          <div id="sellAnimalList"></div>
+          <button id="confirmSell">Sell Selected</button>
+          <button class="backBtn">Back</button>
+        </div>
+      </div>
+
+      <!-- Crop Market Popup -->
+      <div id="cropMarketPopup" class="popup" style="display: none">
+        <span class="close" id="closeCrop">&times;</span>
+        <div id="cropMainMenu">
+          <button id="buyCrops">Buy Seeds</button>
+          <button id="sellCrops">Sell Crops</button>
+        </div>
+        <div id="buyCropMenu" style="display: none">
+          <button class="crop-option" id="wheat-seed">
+            Buy Wheat<br /><span class="price">10 coins</span>
+          </button>
+          <button class="crop-option" id="carrot-seed">
+            Buy Carrot<br /><span class="price">5 coins</span>
+          </button>
+          <button class="crop-option" id="watermelon-seed">
+            Buy Watermelon<br /><span class="price">15 coins</span>
+          </button>
+          <button class="cropBackBtn">Back</button>
+        </div>
+        <div id="sellCropMenu" style="display: none">
+          <button class="crop-option" id="wheat">
+            Sell Wheat<br /><span class="price">20 coins</span>
+          </button>
+          <button class="crop-option" id="carrot">
+            Sell Carrot<br /><span class="price">10 coins</span>
+          </button>
+          <button class="crop-option" id="watermelon">
+            Sell Watermelon<br /><span class="price">30 coins</span>
+          </button>
+          <button class="cropBackBtn">Back</button>
+        </div>
+      </div>
+
+      <!-- Competition Popup -->
+      <div id="competitionPopup" class="popup" style="display: none">
+        <span class="close" id="closeCompetition">&times;</span>
+        <div id="competitionMainMenu">
+          <h2>Animal Competition</h2>
+
+          <label for="userAnimal">Select Your Animal:</label>
+          <select id="userAnimal">
+            <option value="">-- Select --</option>
+          </select>
+
+          <label for="competitionType">Select Competition Type:</label>
+          <select id="competitionType">
+            <option value="">-- Select --</option>
+            <option value="Speed">Speed</option>
+            <option value="Strength">Strength</option>
+            <option value="Smarts">Smarts</option>
+            <option value="Style">Style</option>
+          </select>
+
+          <button id="startCompetitionBtn">Start Competition</button>
+
+          <button id="viewAnimalListCompetition" style="margin-top: 10px">
+            View Animals
+          </button>
+          <button
+            id="hideAnimalListCompetition"
+            style="display: none; margin-top: 10px"
+          >
+            Hide Animals
+          </button>
+
+          <div id="competitionResult" style="margin-top: 20px"></div>
+
+          <div
+            id="animalListCompetition"
+            style="
+              display: none;
+              margin-top: 20px;
+              background-color: #ffffff22;
+              padding: 10px;
+              border-radius: 8px;
+            "
+          >
+            <h3 style="color: white">Your Animals</h3>
+            <ul
+              id="animalListContent"
+              style="list-style-type: none; padding: 0"
+            ></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entry Confirmation Popup -->
+      <div id="entryPrompt" class="custom-popup hide">
+        <div class="custom-popup-content">
+          <p>
+            Do you want to enter the competition? It costs
+            <strong>50 coins</strong>.
+          </p>
+          <button id="confirmEntry" class="btn">Enter</button>
+          <button id="cancelEntry" class="btn cancel">Cancel</button>
+        </div>
+      </div>
+
+      <!-- Notifications -->
+      <div id="wheat-seed-notif">Wheat seeds successfully purchased!</div>
+      <div id="carrot-seed-notif">Carrot seeds successfully purchased!</div>
+      <div id="watermelon-seed-notif">
+        Watermelon seeds successfully purchased!
+      </div>
+      <div id="wheat-crop-notif">Wheat crop successfully sold!</div>
+      <div id="carrot-crop-notif">Carrot crop successfully sold!</div>
+      <div id="watermelon-crop-notif">Watermelon crop successfully sold!</div>
+      <div id="purchase-error">You do not have enough coins!</div>
+      <div id="sell-error">You do not have these crops!</div>
+      <div id="win-notification">
+        Congratulations! Your animal won the competition!
+      </div>
+      <div id="lose-notification">
+        Your animal lost the competition! Better luck next time!
+      </div>
+      <div id="tie-notification">The competition ended in a tie!</div>
+      <div id="comp-error1">You don't have this type of animal!</div>
+      <div id="comp-error2">Must select an animal and competition type!</div>
+      <div id="comp-error3">Selected animal not found!</div>
+      <div id="comp-error4">
+        There was an error starting the competition! Try again!
+      </div>
+      <div id="cow-notif">Cow successfully bought!</div>
+      <div id="chicken-notif">Chicken successfully bought!</div>
+      <div id="goat-notif">Goat successfully bought!</div>
+      <div id="cow-sell">Cow successfully sold!</div>
+      <div id="chicken-sell">Chicken successfully sold!</div>
+      <div id="goat-sell">Goat successfully sold!</div>
+      <div id="animal-sell-error1">You do not have this animal!</div>
+      <div id="animal-sell-error2">Must select an animal to sell!</div>
+    </div>
+
+    <script type="module" src="main.js?scene=town"></script>
+  </body>
+</html>
