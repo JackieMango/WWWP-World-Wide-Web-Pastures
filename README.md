@@ -39,15 +39,20 @@ The game is built using:
 
 
 ## How to Run
+
+- just visit https://pastures.tech/login.html
+
+or
+
 - git clone 
 - cd www-pastures
 - npm install  (if you want to install dependencies)
 - npm start    (to start development server)
 - http://localhost:<specifiedportnumber>   (To view in browser)
 
-or 
 
-just visit https://pastures.tech/login.html
+
+
 
 
 
