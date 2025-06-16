@@ -39,8 +39,7 @@ The game is built using:
 
 
 ## How to Run
-
-- git clone https://gitlab.com/<your-username>/www-pastures.git
+- git clone 
 - cd www-pastures
 - npm install  (if you want to install dependencies)
 - npm start    (to start development server)
